@@ -54,7 +54,7 @@ Javascript:
 
 Markup:
 
-Apply bindings as you normally would with Knockout. Note that observable properties of models are stored as string references accessible with dot syntax instead of a deep copy (for now). Eventually, a more "legit" method of access might be nice, see `Observable.propertyFromString` for details.
+Apply bindings as you normally would with Knockout. Note that observable properties of models are stored as string references accessible with dot syntax instead of a deep copy (for now). Eventually, a more "legit" method of access might be nice. See `Observable.propertyFromString` for details.
 
      <h2 data-bind="text: contact.observable['phone']"></h2>
      <h4 data-bind="text: contact.observable['company.name']"></h4>
