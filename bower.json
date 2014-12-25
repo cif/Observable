@@ -1,0 +1,9 @@
+{
+  "name": "backbone-observable",
+  "description": "Allows Backbone.js Model attributes to easily become ko.observable() functions",
+  "version": "1.0.0",
+  "dependencies": {
+    "backbone": "~1.1.2",
+    "knockout": "~3.2.0"
+  }
+}
