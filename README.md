@@ -18,6 +18,8 @@ Observable.Model supports complex attribute structures recursively. By default, 
 Usage
 =========
 
+You can also view the live demo [here](http://cif.github.io/Observable/)
+
 Javascript:
 
     var Contact = Observable.Model.extend({
