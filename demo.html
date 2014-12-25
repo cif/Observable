@@ -1,0 +1,129 @@
+<html>
+<head>
+  <title>Observable.Model Demo</title>
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <script type="text/javascript" src="dist/observable.js"></script>  
+</head>
+<body>  
+ <div id="contact-view">  
+  
+  <div class="container-fluid" data-bind="with: contact">
+    <h1>Observable.Model Demo</h1>
+   <div class="col-md-4">
+    <p>CONTACT:</p>
+    <h2 data-bind="text: observable['name']"></h2>
+    <h4>Phone: <span data-bind="text: observable['phone']"></span></h4>
+    <h4>Email: <span data-bind="text: observable['email']"></span></h4>
+   </div>
+   <div class="col-md-4">
+    <p>COMPANY:</p>
+    <h2><span data-bind="text: observable['company.name']"></span></h2>
+    <h4>Location: <span data-bind="text: observable['company.location']"></span></h4>
+   </div>   
+   <div class="col-md-4">
+    <p>EDIT:</p>
+    <p>These updates are via knockout <b>data-bind="textInput: observable['field']</b>.</span>
+    <p>Phone: <input type="text" data-bind="textInput: observable['phone']"></p>
+    <p>Email: <input type="text" data-bind="textInput: observable['email']"></p>
+    <p>These updates are via backbone <b>Model.set() and NO need to update DOM!</b></p>
+    <button onclick="app.updatePhone('542-323-4234');">Update phone</button> 
+    <button onclick="app.updateEmail('ben@creativeinformations.com');">Update email</button>
+    <button onclick="app.updateCompany({name:'Adobe',location:'California'});">Update company</button>
+   </div>  
+  </div>
+ </div> 
+ <div class="code col-md-6">
+ 
+ <h1>The JS:</h1>
+ <p>View the source of this page to see how the DOM bindings are setup!</p>
+   <pre>
+   var Contact = Observable.Model.extend({
+     observe:'name,email,phone'
+   }); 
+   
+   var ContactViewModel = function(){
+      
+      this.contact = new Contact({
+        name:'Ben Ipsen',
+        phone:'555-555-5555',
+        email:'email@benipsen.com',
+        company:{
+          name:'Creative Informations',
+          location:'Bend, Oregon'
+        }
+      });
+     
+      // add observations programatically
+      // make sure to add any additional observeers 
+      // before calling ko.applyBindings
+      this.contact.makeObservation('company');
+       
+      this.updatePhone = function(phone){
+        this.contact.set('phone', phone); // automatically updates DOM via observable binding!
+      };
+      
+      this.updateEmail = function(email){
+        this.contact.set('email', email); 
+      };
+      
+      this.updateCompany = function(company){
+        this.contact.set('company', company); 
+      };
+      
+      return this;
+          
+   };
+   
+   var app = new ContactViewModel();
+   // apply bindings
+   ko.applyBindings(app);
+  </pre>
+ </div>   
+  
+ <script type="text/javascript">
+
+   var Contact = Observable.Model.extend({
+     observe:'name,email,phone'
+   }); 
+   
+   var ContactViewModel = function(){
+      
+      this.contact = new Contact({
+        name:'Ben Ipsen',
+        phone:'555-555-5555',
+        email:'email@benipsen.com',
+        company:{
+          name:'Creative Informations',
+          location:'Bend, Oregon'
+        }
+      });
+     
+      // add observers programatically
+      // make sure yo add any additional observeers 
+      // before calling ko.applyBindings
+      this.contact.makeObservation('company');
+       
+      this.updatePhone = function(phone){
+        this.contact.set('phone', phone); // automatically updates DOM via observable binding!
+      };
+      
+      this.updateEmail = function(email){
+        this.contact.set('email', email); // automatically updates DOM via observable binding!
+      };
+      
+      this.updateCompany = function(company){
+        this.contact.set('company', company); // automatically updates DOM via observable binding!
+      };
+      
+      return this;
+          
+   };
+   
+   var app = new ContactViewModel();
+   // apply bindings
+   ko.applyBindings(app);
+   
+   
+ </script> 
+</body>
+</html>  
