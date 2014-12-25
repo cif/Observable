@@ -6,7 +6,7 @@ Allows Backbone.Model attributes to easily become ko.observable() functions maki
 Why?
 ==========
 
-If you want to use Knockout's super convenient bindings but also want to leverage Backbone functionality, this super simple library has your back.
+If you want to use Knockout's super convenient bindings but also want to leverage Backbone functionality, this super simple library has your back. [View the demo page](http://cif.github.io/Observable/).
 
 How?
 ==========
