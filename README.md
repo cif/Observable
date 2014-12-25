@@ -11,9 +11,9 @@ If you want to use Knockout's super convenient bindings but also want to leverag
 How?
 ==========
 
-**Observable.Model** wraps observable attributes in `Observable.Attribute` which contains a `ko.observable()` property and subscribes to it. and model attributes via Backbone.Model change event allowing you to observe and update `Backbone.Model` attributes easily. It will also automatically update the knockout bindings when your application code changes backbone models. 
+**Observable.Model** wraps each Backbone.Model attribute in an `Observable.Attribute` which contains a `ko.observable()` function property and subscribes to it. `Observable.Attribute` also maintains a reference to the model and listens for changes to its attribute that come from within the application, in turn passing that value on to the observable function which updates the DOM automatially.
 
-Observable.Model supports complex attribute structures recursively. By default, all attributes are observed however. The `observable:` property allows you to specify which fields you want to observe which can avoid excess overhead observing large models.
+Observable.Model supports complex attribute structures recursively. By default, all attributes are observed however the `observe:` property allows you to specify which fields you want to observe which can avoid excess overhead when observing large models.
 
 Usage
 =========
